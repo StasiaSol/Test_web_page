@@ -1,0 +1,15 @@
+*{
+    font-family: 'Cambria Math',sans-serif;
+}
+body{
+    background-color: lightgrey;
+    color: darkslategrey;
+}
+.main{
+    text-align: center;
+}
+.result {
+    margin-top: 25px;
+    text-align: center;
+    white-space: pre-wrap;
+}

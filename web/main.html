@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Веб страница тест</title>
+    <meta charset="utf-8">
+    <script src="eel.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="'main" class="main">
+        <h2>Онлайн страница</h2>
+        <input type="file" id="files" onchange="read()">
+    </div>
+    <div id="footer">
+        Wait
+    </div>
+    
+    <script>
+        async function read() {
+            let file = document.getElementById('files')
+            const reader = new FileReader()
+            reader.onerror = error => reject(error)
+            reader.onload = async function(event){
+ 
+                let text = event.target.result
+                let new_text = await eel.get_file(text)();
+                let oldDiv = document.getElementsByClassName("result");
+                if (oldDiv.length !== 0) {
+                    oldDiv = oldDiv[0];
+                    oldDiv.parentNode.removeChild(oldDiv);}
+                let newDiv = document.createElement("div");
+                newDiv.setAttribute("class", "result")
+                let content = document.createTextNode(new_text);
+                newDiv.appendChild(content);
+                const currentDiv = document.getElementById("footer");
+                document.body.insertBefore(newDiv, currentDiv)
+            }
+            reader.readAsText(file.files[0])
+        }
+    </script>
+    
+</body>
+</html>
